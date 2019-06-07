@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+let argv = require('minimist')(process.argv.slice(2),{
+    alias : {
+        'directory' : 'd',      //目标目录
+        'keyword' : 'k',        //关键词，单行或多行 或关键词
+        'target' : 't',         //替换目标字符串
+        'recursion' : 'r',      //是否递归查找
+        'extname' : 'e',         //需要替换的文件后缀
+        'help' : 'h'
+    },
+    string : ['directory','keyword','target','extname'],
+    boolean : ['recursion'],
+    'default' : {
+        'directory' : process.cwd(),
+        'recursion' : false
+    }
+})
+
+if( argv.help ){
+    console.log('Usage : ');
+    console.log('    findstr -d /home/resource/     //要替换的目标文件夹，默认当前文件夹');
+    console.log('    findstr -k keyword             //要查找的字符串 ');
+    console.log('    findstr -t replaceword         //要替换的字符串');
+    console.log('    findstr -r                     //是否递归查询，默认不递归');
+    console.log('    findstr -e .txt,.html           //查找哪些后缀的文件');
+}else{
+
+    //校验参数
+    let start = true;
+    if(!argv.keyword){
+        console.log(`请输入关键词 -k keyword`)
+        process.exit(0);
+    }
+    if(!argv.extname){
+        console.log(`请输入文件后缀，逗号分割. -e .txt,.html`)
+        process.exit(0);
+    }
+    //MAIN FUNCTION 
+    require('../lib/findstr')(argv);    
+}
+
