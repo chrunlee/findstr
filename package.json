@@ -1,9 +1,9 @@
 {
   "name": "findstr",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "查找目标文件夹内符合后缀的文件内的关键字，并进行替换。目前只能替换单行文字，后续增加多行文本或文件。",
   "bin": {
-    "findstr": "./bin/findstr"
+    "findstring": "./bin/findstr"
   },
   "directories": {
     "lib": "lib"
